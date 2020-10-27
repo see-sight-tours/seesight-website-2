@@ -1,81 +1,24 @@
 <template>
-  <div v-if="attractions">
-    <!-- Hero -->
-    <hero
-      :title="attractions && attractions[0].name"
-      :image="attractions && attractions[0].images[0]"
-      custom-class-wrap="pt-24 md:pt-104 pb-40 md:pb-112"
+  <div
+    v-if="attractions"
+    class="max-w-1180 w-full mx-auto px-16 sm:px-30 mt-32 sm:mt-24"
+  >
+    <h1 class="text-desktop-hero-smaller mb-40">{{ attractions[0].title }}</h1>
+    <img
+      class="w-full"
+      :src="
+        `${mediaUrl}t_thumbnail/${attractions[0].images[0].desktopUrl.trim()}`
+      "
+      alt=""
     />
-
-    <about-info
-      v-if="attractions"
-      title="Description"
-      :short-description="attractions[0].shortDescription"
-      :long-description="attractions[0].longDescription"
-      :hour-of-operation="attractions[0].hourOfOperation"
-      :what-to-bring="attractions[0].whatToBring"
-      :expert-tips="attractions[0].expertTips"
-      class="pt-32 pb-56 md:py-48"
-    >
-      <template v-if="attractions">
-        <div class="flex justify-between flex-col sm:flex-row mt-24 sm:mt-32">
-          <div
-            class="max-w-520 w-full h-288 sm:h-520 mr-0 sm:mr-24 mb-16 sm:mb-0"
-          >
-            <img
-              :src="
-                `${imageUrl}${attractions[0].images[0].desktopUrl.trim()}` ||
-                require(`@/static/img/no-image.png`)
-              "
-              :alt="attractions[0].images[0].altText || 'Attraction image'"
-              class="h-full w-full object-cover"
-            />
-          </div>
-          <div class="flex flex-row sm:flex-col">
-            <div
-              v-for="image in attractions[0].images.slice(0, 2)"
-              :key="image.id"
-              class="max-w-248 w-full h-136 sm:h-248 mr-16 last:mr-0 sm:mr-0 mb-0 sm:mb-24"
-            >
-              <img
-                :src="
-                  `${imageUrl}${image.desktopUrl.trim()}` ||
-                  require(`@/static/img/no-image.png`)
-                "
-                :alt="image.altText || 'Attraction image'"
-                class="h-full w-full object-cover"
-              />
-            </div>
-          </div>
-        </div>
-      </template>
-    </about-info>
-
-    <app-accordion v-if="attractions[0]" :default-open="0">
-      <app-accordion-item
-        collapse-icon="arrow-icon"
-        class="bordered border-t border-grey-800"
-        custom-class="max-w-1180 w-full m-auto px-16 md:px-30 pt-25 md:pt-40 pb-25 md:pb-34"
-      >
-        <template v-slot:title>
-          <p
-            class="text-terciary font-bold text-mobile-h2 md:text-desktop-h1 leading-2sm md:leading-3sm pr-20 md:pr-40"
-          >
-            Frequently Asked Questions
-          </p>
-        </template>
-        <component
-          :is="'faq'"
-          :tour-questions="attractions[0].questions"
-          :show-general="false"
-          class="mt-20"
-        />
-      </app-accordion-item>
-    </app-accordion>
+    <p class="mt-10">
+      <vue-markdown>{{ attractions[0].longDescription }}</vue-markdown>
+    </p>
 
     <div
-      v-if="attractions"
-      {{attractions[0].relatedProducts.length}}
+      v-if="
+        attractions[0].relatedProducts && attractions[0].relatedProducts.length
+      "
       class="bg-grey-700 flex flex-col pt-32 md:pt-48 pb-32 md:pb-48"
     >
       <div class="max-w-1180 w-full pl-16 pr-0 md:px-30 mx-auto">
@@ -99,9 +42,6 @@
         </div>
       </div>
     </div>
-
-    <!-- Subscribe newsletter -->
-    <subscribe-newsletter />
   </div>
 </template>
 
@@ -112,35 +52,46 @@ import AboutInfo from "@/components/pages/AboutInfo";
 import TourCard from "@/components/shared/TourCard";
 import AppAccordion from "@/components/shared/AppAccordion";
 import AppAccordionItem from "@/components/shared/AppAccordionItem";
+import VueMarkdown from "vue-markdown";
 // import SubscribeNewsletter from '@/components/pages/SubscribeNewsletter'
 // import Faq from '@/components/pages/Faq'
 import { attractionBySlug } from "@/api/queries/cities";
 export default {
   name: "AttractionPage",
-  components: { Hero, AboutInfo, TourCard, AppAccordion, AppAccordionItem },
+  components: {
+    Hero,
+    AboutInfo,
+    TourCard,
+    AppAccordion,
+    AppAccordionItem,
+    VueMarkdown
+  },
+  computed: {
+    ...mapState({ mediaUrl: state => state.mediaUrl })
+  },
   apollo: {
     attractions: {
       prefetch: true,
       query: attractionBySlug,
       variables() {
         return { slug: this.slug };
-      },
-    },
+      }
+    }
   },
   data() {
     return {
-      slug: this.$route.params.attractionSlug,
+      slug: this.$route.params.attractionSlug
     };
   },
   computed: {
-    ...mapState({ mediaUrl: (state) => state.mediaUrl }),
+    ...mapState({ mediaUrl: state => state.mediaUrl }),
     imageUrl() {
       if (process.browser && window.innerWidth <= 768) {
         return `${this.mediaUrl}t_mobile/`;
       } else {
         return `${this.mediaUrl}t_desktop/`;
       }
-    },
+    }
   },
   created() {
     console.log(this.attractionBySlug);
@@ -155,18 +106,18 @@ export default {
           name: "description",
           content: this.attractionBySlug
             ? this.attractionBySlug.metaDescription
-            : "",
-        },
+            : ""
+        }
       ],
       link: this.attractionBySlug
         ? [
             {
               rel: "canonical",
-              href: `https://seesight-tours.com/${this.attractionBySlug.city.slug}/${this.attractionBySlug.slug}`,
-            },
+              href: `https://seesight-tours.com/${this.attractionBySlug.city.slug}/${this.attractionBySlug.slug}`
+            }
           ]
-        : [{ rel: "canonical", href: "https://seesight-tours.com/cities" }],
+        : [{ rel: "canonical", href: "https://seesight-tours.com/cities" }]
     };
-  },
+  }
 };
 </script>

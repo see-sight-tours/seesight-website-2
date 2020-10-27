@@ -1,39 +1,46 @@
 <template>
-    <div>
-        <hero-video
-          title="Day Tours"
-          text="Small Group Single Day Tours"
-          image="getSiteInfo getSiteInfo.dayToursPageHeaderImage"
-          location=""
-          :video="`https://storage.googleapis.com/seesight-assets/seesight-niagara-video.mp4`"
-          custom-class-wrap="h-screen40"
-          custom-class-location="" />
+  <div>
+     <hero-video
+      title="Day Tours"
+      text="Small Group Single Day Tours"
+      image="getSiteInfo getSiteInfo.dayToursPageHeaderImage"
+      location=""
+      :video="
+        `https://storage.googleapis.com/seesight-assets/seesight-niagara-video.mp4`
+      "
+      custom-class-wrap="h-screen40"
+      custom-class-location=""
+    />
 
-        <trust />
+    <trust />
 
-        <featured-experiences
-          v-if="products"
-          filter-type="select"
-          :items.sync="products"
-          :active-tab="1"
-          :amount="products.length" />
+    <featured-experiences
+      v-if="products"
+      filter-type="select"
+      :items.sync="products"
+      :active-tab="1"
+      :amount="products.length"
+    />
 
-        <discover-cities />
+    <discover-cities />
 
-    </div>
+    <trip-sheppard />
+  </div>
 </template>
 
 <script>
-import { products } from '@/api/queries/product'
-import HeroVideo from '@/components/pages/HeroVideo'
-import Trust from '@/components/shared/Trust'
-import FeaturedExperiences from '@/components/pages/FeaturedExperiences'
-import DiscoverCities from '@/components/pages/DiscoverCities'
+import { products } from "@/api/queries/product";
+import HeroVideo from "@/components/pages/HeroVideo";
+import Trust from "@/components/shared/Trust";
+import FeaturedExperiences from "@/components/pages/FeaturedExperiences";
+import DiscoverCities from "@/components/pages/DiscoverCities";
+import TripSheppard from "@/components/shared/TripSheppard";
 export default {
   components: {
     HeroVideo,
     FeaturedExperiences,
     DiscoverCities,
+    TripSheppard,
     Trust
   },
   apollo: {
@@ -42,9 +49,7 @@ export default {
       query: products
     }
   }
-}
+};
 </script>
 
-<style lang="scss" scoped>
-
-</style>
+<style lang="scss" scoped></style>

@@ -3,7 +3,7 @@
     <hero
       :title="`Best ${cities[0] && cities[0].name} Tours`"
       :search="true"
-      :image="cities[0] && cities[0].featureImage[0]"
+      :image="cities[0] && cities[0].featureImages[0]"
       custom-class-wrap="pt-16 md:pt-144 pb-24 md:pb-224"
     />
 

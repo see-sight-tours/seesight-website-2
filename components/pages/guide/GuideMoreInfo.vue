@@ -10,7 +10,7 @@
       >
         <img
           :src="imageURL"
-          :alt="guides[activeIndex].photo.altText || 'guides'"
+          :alt="guides[activeIndex].photos[0].altText || 'guides'"
           class="object-cover rounded-8 h-152 lg:h-full w-176 midsm:w-full"
           >
       </div>

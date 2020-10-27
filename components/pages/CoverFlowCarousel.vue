@@ -9,10 +9,10 @@
         :key="index"
         :data-index="index"
         class="custom-carousel__img-wrap swiper-slide">
-        <!-- <img
+        <img
           v-if="item.photo "
           :src="`${mediaUrl}t_mobile/${item.photo.desktopUrl.trim()}` || require(`@/static/img/no-image.png`)"
-          class="object-cover h-full w-full rounded-8"> -->
+          class="object-cover h-full w-full rounded-8">
       </div>
     </div>
   </div>

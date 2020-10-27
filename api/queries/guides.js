@@ -2,13 +2,13 @@ import gql from 'graphql-tag'
 
 export const guides = gql`
     query {        
-      guides {
+      guides(sort: "order") {
         firstName
         lastName
         position
         biography
         published
-        photo {
+        photos {
           desktopUrl
           altText
           mobileUrl

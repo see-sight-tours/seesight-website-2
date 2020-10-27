@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div v-if="products">
     <template v-if="products[0]">
       <!-- Tour Hero -->
       <tour-header
@@ -35,13 +35,13 @@
 
       <!-- Highlights -->
       <tour-highlights
-        v-if="products[0] && products[0].highlights.length"
+        v-if="products[0] && products[0].highlights && products[0].highlights.length"
         :highlights="products[0].highlights"
       />
 
       <!-- Itinerary -->
       <tour-itinerary
-        v-if="products[0] && products[0].itineraries.length"
+        v-if="products[0] && products[0].itineraries && products[0].itineraries.length"
         :itinerary="products[0].itineraries"
       />
 
@@ -62,7 +62,7 @@
     </template>
     <template v-else>
       <tour-booking
-        v-if="productBySlug"
+        v-if="hello && productBySlug"
         :product="productBySlug"
         :is-booking.sync="isBooking"
       />
@@ -92,7 +92,7 @@ export default {
   name: "DayToursDetailPage",
   data() {
     return {
-      route: "",
+      route: ""
     };
   },
   components: {
@@ -107,7 +107,7 @@ export default {
     // AboutInfo,
     // DiscoverPlaces,
     // TourAccordion,
-    TourRelated,
+    TourRelated
     // TourBooking,
     // SubscribeNewsletter,
     // PriceBar
@@ -118,19 +118,19 @@ export default {
       query: productBySlug,
       variables() {
         return {
-          slug: this.$route.params.slug,
+          slug: this.$route.params.slug
         };
-      },
-    },
+      }
+    }
   },
   data() {
     return {
-      isBooking: false,
+      isBooking: false
     };
   },
   created() {
     this.route = this.$route.params.slug;
-  },
+  }
   //   head () {
   //     return {
   //       title: this.productBySlug ? this.productBySlug.title : 'Day Tour',

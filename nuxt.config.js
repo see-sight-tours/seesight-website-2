@@ -14,6 +14,8 @@ export default {
 
   // Global CSS (https://go.nuxtjs.dev/config-css)
   css: [
+    '@/assets/scss/main.scss',
+    '@/assets/css/icomoon.css',
     'vue-slider-component/theme/default.css',
     'swiper/dist/css/swiper.css',
     'vue-scroll-picker/dist/style.css',

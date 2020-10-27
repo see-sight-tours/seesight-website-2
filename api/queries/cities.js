@@ -6,7 +6,7 @@ export const cities = gql`
       name
       snippet
       slug
-      featureImage {
+      featureImages {
         desktopUrl
         altText
         mobileUrl
@@ -45,9 +45,9 @@ export const citiesPage = gql`
 `
 
 export const cityBySlug = gql`
-  query {
+  query($slug: String) {
     cities(where: {
-      slug: "niagara-falls-tours-canada"
+      slug: $slug
     }){
       published
       name
@@ -55,7 +55,7 @@ export const cityBySlug = gql`
       slug
       shortDescription
       longDescription
-      featureImage {
+      featureImages {
         desktopUrl
         altText
         mobileUrl
@@ -77,11 +77,12 @@ export const cityBySlug = gql`
         }
       }
       products {
-        featureImage {
+        featureImages {
           desktopUrl
           mobileUrl
           altText
         }
+        duration
         name
         slug
         snippet
@@ -91,9 +92,9 @@ export const cityBySlug = gql`
 `
 
 export const attractionBySlug = gql`
-query {
+query($slug: String) {
   attractions(where: {
-    slug: "skylon-tower"
+    slug: $slug
   }){
     title
     slug
@@ -101,6 +102,7 @@ query {
     title
     metaDescription
     shortDescription
+    longDescription
     city {
       slug
     }
@@ -111,7 +113,10 @@ query {
     }
     relatedProducts {
       name
-      featureImage {
+      snippet
+      duration
+      slug
+      featureImages {
         mobileUrl
         altText
         desktopUrl
