@@ -1,7 +1,9 @@
 <template>
   <div class="max-w-1180 w-full px-16 md:px-30 mx-auto mb-30">
     <div class="w-3/4">
-      <h3 class="font-bold my-30 tracking-wider">Places you'll see</h3>
+      <h3 class="font-bold my-30 tracking-wider text-desktop-h3">
+        Places you'll see
+      </h3>
       <div class="carousel flex flex-wrap cursor-pointer">
         <nuxt-link
           v-for="(item, index) in items"

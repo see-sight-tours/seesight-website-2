@@ -269,6 +269,7 @@ module.exports = {
     height: global.Object.assign(
       {
         1: '1px',
+        3: '3px',
         16: '16px',
         20: '20px',
         24: '24px',
@@ -580,6 +581,7 @@ module.exports = {
         87: '87px',
         88: '88px',
         90: '90px',
+        100: '100px',
         105: '105px',
         128: '128px',
         135: '135px',

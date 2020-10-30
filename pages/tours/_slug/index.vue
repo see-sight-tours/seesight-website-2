@@ -1,72 +1,74 @@
 <template>
   <div>
-    <template v-if="products[0]">
-      <!-- Tour Hero -->
-      <tour-header
-        v-if="products[0]"
-        :duration="products[0].duration"
-        :name="products[0].name"
-        :review-average="products[0].reviewAverage"
-        :reviews-length="products[0].review && products[0].review.length"
-      />
+    <div v-if="products" class="mt-64">
+      <template v-if="products[0]">
+        <!-- Tour Hero -->
+        <tour-header
+          v-if="products[0]"
+          :duration="products[0].duration"
+          :name="products[0].name"
+          :review-average="products[0].reviewAverage"
+          :reviews-length="products[0].review && products[0].review.length"
+        />
 
-      <!-- Tour Hero -->
-      <div class="pt-27 pb-24 md:py-30">
-        <div
-          class="max-w-1180 w-full px-8 pb-32 mx-auto flex lg:flex-row flex-col-reverse"
-        >
-          <tour-info-box :product-by-slug="products[0]" />
-          <tour-hero
-            v-if="products[0]"
-            :carousel-items="products[0].carouselItems"
-          />
+        <!-- Tour Hero -->
+        <div class="pt-27 pb-24 md:py-30">
+          <div
+            class="max-w-1180 w-full px-8 pb-32 mx-auto flex lg:flex-row flex-col-reverse"
+          >
+            <tour-info-box :product-by-slug="products[0]" />
+            <tour-hero
+              v-if="products[0]"
+              :carousel-items="products[0].carouselItems"
+            />
+          </div>
         </div>
-      </div>
 
-      <!-- Tour About -->
-      <tour-about />
+        <!-- Tour About -->
+        <tour-about />
 
-      <!-- Tour Experience -->
-      <tour-experience
-        v-if="products[0] && products[0].attractions.length"
-        :items="products[0].attractions"
-        :add-ons="products[0].addOns"
-      />
+        <!-- Tour Experience -->
+        <tour-experience
+          v-if="products[0] && products[0].attractions.length"
+          :items="products[0].attractions"
+          :add-ons="products[0].addOns"
+        />
 
-      <!-- Highlights -->
-      <tour-highlights
-        v-if="products[0] && products[0].highlights.length"
-        :highlights="products[0].highlights"
-      />
+        <!-- Highlights -->
+        <tour-highlights
+          v-if="products[0] && products[0].highlights && products[0].highlights.length"
+          :highlights="products[0].highlights"
+        />
 
-      <!-- Itinerary -->
-      <tour-itinerary
-        v-if="products[0] && products[0].itineraries.length"
-        :itinerary="products[0].itineraries"
-      />
+        <!-- Itinerary -->
+        <tour-itinerary
+          v-if="products[0] && products[0].itineraries && products[0].itineraries.length"
+          :itinerary="products[0].itineraries"
+        />
 
-      <!-- Tour Description -->
-      <tour-description
-        v-if="products[0]"
-        :long-description="products[0].longDescription"
-        :tour-includes="products[0].tourIncludes"
-        :important-info="products[0].importantInfo"
-        :tour-questions="products[0].questions"
-      />
+        <!-- Tour Description -->
+        <tour-description
+          v-if="products[0]"
+          :long-description="products[0].longDescription"
+          :tour-includes="products[0].tourIncludes"
+          :important-info="products[0].importantInfo"
+          :tour-questions="products[0].questions"
+        />
 
-      <!-- Tour related -->
-      <tour-related
-        v-if="products[0] && products[0].relatedProducts.length"
-        :related-products="products[0].relatedProducts"
-      />
-    </template>
-    <template v-else>
-      <tour-booking
-        v-if="productBySlug"
-        :product="productBySlug"
-        :is-booking.sync="isBooking"
-      />
-    </template>
+        <!-- Tour related -->
+        <tour-related
+          v-if="products[0] && products[0].relatedProducts.length"
+          :related-products="products[0].relatedProducts"
+        />
+      </template>
+      <template v-else>
+        <tour-booking
+          v-if="hello && productBySlug"
+          :product="productBySlug"
+          :is-booking.sync="isBooking"
+        />
+      </template>
+    </div>
   </div>
 </template>
 
@@ -92,7 +94,7 @@ export default {
   name: "DayToursDetailPage",
   data() {
     return {
-      route: "",
+      route: ""
     };
   },
   components: {
@@ -107,7 +109,7 @@ export default {
     // AboutInfo,
     // DiscoverPlaces,
     // TourAccordion,
-    TourRelated,
+    TourRelated
     // TourBooking,
     // SubscribeNewsletter,
     // PriceBar
@@ -118,19 +120,19 @@ export default {
       query: productBySlug,
       variables() {
         return {
-          slug: this.$route.params.slug,
+          slug: this.$route.params.slug
         };
-      },
-    },
+      }
+    }
   },
   data() {
     return {
-      isBooking: false,
+      isBooking: false
     };
   },
   created() {
     this.route = this.$route.params.slug;
-  },
+  }
   //   head () {
   //     return {
   //       title: this.productBySlug ? this.productBySlug.title : 'Day Tour',

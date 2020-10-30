@@ -39,9 +39,7 @@
         <h3
           class="text-mobile-h2 leading-2sm font-bold mb-8"
           :class="[textColorClass]"
-        >
-          {{ items[activeIndex].name }}
-        </h3>
+        ></h3>
         <p class="mobile-body leading-1sm mb-16" :class="[textColorClass]">
           {{ items[activeIndex].snippet }}
         </p>

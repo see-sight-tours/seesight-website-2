@@ -1,6 +1,6 @@
 <template>
   <div class="max-w-1180 w-full px-16 md:px-30 mx-auto mb-30">
-    <h3 class="font-bold mb-30 tracking-wider">Highlights</h3>
+    <h3 class="font-bold mb-30 text-desktop-h3 tracking-wider">Highlights</h3>
     <ul class="ml-20">
       <li
         v-for="(item, index) in highlights"

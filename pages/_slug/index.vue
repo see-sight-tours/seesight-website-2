@@ -3,7 +3,7 @@
     <hero
       :title="`Best ${cities[0] && cities[0].name} Tours`"
       :search="true"
-      :image="cities[0] && cities[0].featureImage[0]"
+      :image="cities[0] && cities[0].featureImages[0]"
       custom-class-wrap="pt-16 md:pt-144 pb-24 md:pb-224"
     />
 
@@ -15,12 +15,31 @@
       </h2>
     </div>
 
-    <featured-experiences
-      v-if="cities[0]"
-      :items.sync="cities[0].products"
-      :amount="cities[0].products.length"
-      :city-id="cities[0].id"
-    />
+ <div
+      v-if="cities[0].products && cities[0].products"
+      class="bg-grey-700 flex flex-col pt-32 md:pt-48 pb-32 md:pb-48"
+    >
+      <div class="max-w-1180 w-full pl-16 pr-0 md:px-30 mx-auto">
+        <h2
+          class="text-mobile-h2 md:text-desktop-h2 leading-2sm md:leading-2sm text-terciary font-bold mb-16 md:mb-40 pr-16 md:pr-0"
+        >
+          Tours in this city
+        </h2>
+        <div class="overflow-x-auto overflow-y-hidden">
+          <div class="cards-scroll inline-block mr-16 lg:mx-0">
+            <div
+              class="tour-card-inner flex flex-wrap justify-between lg:justify-start"
+            >
+              <tour-card
+                v-for="(tourCardItem, index) in cities[0].products"
+                :key="index"
+                :tour-card-item="tourCardItem"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
 
     <discover-places
       v-if="cities[0]"

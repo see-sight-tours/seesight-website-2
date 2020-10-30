@@ -9,8 +9,8 @@
         class="sm:w-220 lg:w-300 2lg:w-352 h-full flex-shrink-0"
       >
         <img
-          :src="imageURL"
-          :alt="guides[activeIndex].photo.altText || 'guides'"
+          :src="`${mediaUrl}t_thumbnail/${url.trim()}`"
+          :alt="guides[activeIndex].photos[0].altText || 'guides'"
           class="object-cover rounded-8 h-152 lg:h-full w-176 midsm:w-full"
           >
       </div>
@@ -37,14 +37,20 @@
 </template>
 
 <script>
+import { mapState } from "vuex";
 export default {
+  
   props: {
     guidesRow: Object,
     indexRow: Number,
     imageURL: String,
     guides: Array,
     activeIndex: Number,
-    isOpenMoreInfo: Boolean
+    isOpenMoreInfo: Boolean,
+    url: Object
+  },
+  computed: {
+    ...mapState({ mediaUrl: state => state.mediaUrl }),
   }
 }
 </script>

@@ -1,5 +1,5 @@
 <template>
-  <div class="wrapper relative overflow-hidden h-520" :class="customClassWrap">
+  <div class="wrapper relative overflow-hidden" :class="customClassWrap">
     <div class="featured absolute">
       <video poster="assets/poster.jpg" autoplay="true" muted="true" loop class="absolute h-full w-full">
         <source :src="video" type="video/mp4" />
@@ -29,71 +29,71 @@
 </template>
 
 <script>
-import AppInput from '@/components/shared/AppInput'
-import SearchPopup from '@/components/shared/SearchPopup'
+import AppInput from "@/components/shared/AppInput";
+import SearchPopup from "@/components/shared/SearchPopup";
 export default {
-  name: 'Hero',
-  data () {
+  name: "Hero",
+  data() {
     return {
-      isSearchPopupOpen: false
-    }
+      isSearchPopupOpen: false,
+    };
   },
   props: {
     search: {
       type: Boolean,
-      required: false
+      required: false,
     },
     title: {
       type: String,
-      default: () => ''
+      default: () => "",
     },
     text: {
       type: String,
-      default: () => ''
+      default: () => "",
     },
     video: {
       type: String,
-      default: () => ''
+      default: () => "",
     },
     customClassWrap: {
       type: String,
-      default: () => ''
-    }
+      default: () => "",
+    },
   },
   components: {
     SearchPopup,
-    AppInput
-  }
-}
+    AppInput,
+  },
+};
 </script>
 
 <style scoped>
-  .featured {
-    width: 100%;    /*  video width / height  */
-    height: 56vw;   /*  video height / width  */
-    min-width: 100%;
-    min-height: 100%;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-  }
-  video {
-    top: 0;
-    left: 0;
-  }
-  .overlay {
-    top: 0%;
-    left:0%;
-  }
-  .search-container {
-    top: 25%;
-    left: 10%
-  }
-  /* Transition Animations */
-  .fade-enter {
-    opacity: 0
-  }
-  .fade-enter-active {
-    transition: opacity 1s;
-  }
+.featured {
+  width: 100%; /*  video width / height  */
+  height: 56vw; /*  video height / width  */
+  min-width: 100%;
+  min-height: 100%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+video {
+  top: 0;
+  left: 0;
+}
+.overlay {
+  top: 0%;
+  left: 0%;
+}
+.search-container {
+  top: 25%;
+  left: 10%;
+}
+/* Transition Animations */
+.fade-enter {
+  opacity: 0;
+}
+.fade-enter-active {
+  transition: opacity 1s;
+}
 </style>
