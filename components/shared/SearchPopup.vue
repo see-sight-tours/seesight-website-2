@@ -31,9 +31,9 @@
             >
               <div class="w-full h-104 mb-16">
                 <img
-                  v-if="city.featureImage"
+                  v-if="city.featureImages && city.featureImages[0]"
                   :src="
-                    `${mediaUrl}t_thumbnail/${city.featureImage[0].desktopUrl.trim()}` ||
+                    `${mediaUrl}t_thumbnail/${city.featureImages[0].desktopUrl.trim()}` ||
                       require(`@/static/img/no-image.png`)
                   "
                   alt="discover city"

@@ -30,11 +30,11 @@
           :link-color-class="linkColorClass"
         />
       </div>
-      <!-- <cover-flow-carousel
+      <cover-flow-carousel
         :slide-items="items.map((el) => ({ photo: el.images[0] }))"
         class="block sm:hidden"
         :active-index.sync="activeIndex"
-      /> -->
+      />
       <div class="block sm:hidden w-full mt-15 pl-16 pr-40">
         <h3
           class="text-mobile-h2 leading-2sm font-bold mb-8"

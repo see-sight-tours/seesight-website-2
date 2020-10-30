@@ -2,9 +2,9 @@
   <div>
     <!-- Hero -->
     <hero
-      :title="getSiteInfo && getSiteInfo.tripShepherdBarHeader"
-      :text="getSiteInfo && getSiteInfo.tripShepherdBarText"
-      :image="getSiteInfo && getSiteInfo.tripShepherdBarImage"
+      :title="tripShepherdPage && tripShepherdPage.tripShepherdBarHeader"
+      :text="tripShepherdPage && tripShepherdPage.tripShepherdBarText"
+      :image="tripShepherdPage && tripShepherdPage.tripShepherdBarImage"
       location=""
       custom-class-wrap="pt-24 md:pt-104 pb-24 md:pb-48"
       custom-class-location="mt-32 md:mt-80"
@@ -30,9 +30,9 @@
             your TripShepherd while you’re in-destination to help with
             additional requests during your stay.
           </p>
-          <!-- <div class="w-full max-w-full h-162 md:h-288">
+          <div class="w-full max-w-full h-162 md:h-288">
             <img src="@/static/img/trip-img.jpg" alt="trip-shepherd" class="h-full w-full rounded-8 object-cover">
-          </div> -->
+          </div>
         </div>
         <div class="lg:min-w-480 lg:max-w-480">
           <div
@@ -187,15 +187,15 @@ export default {
   name: "TripSheppardPage",
   components: { Hero, AppButton },
   apollo: {
-    getSiteInfo: {
+    tripShepherdPage: {
       prefetch: true,
       query: gql`
         query {
-          getSiteInfo {
+          tripShepherdPage {
             tripShepherdBarText
             tripShepherdBarHeader
-            tripShepherdBarButtonText
             tripShepherdBarImage {
+              mobileUrl
               desktopUrl
               altText
             }

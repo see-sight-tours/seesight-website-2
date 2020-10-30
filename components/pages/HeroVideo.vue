@@ -1,28 +1,14 @@
 <template>
-  <div class="wrapper relative overflow-hidden mt-88" :class="customClassWrap">
+  <div class="wrapper relative overflow-hidden" :class="customClassWrap">
     <div class="featured absolute">
-      <video
-        poster="assets/poster.jpg"
-        autoplay="true"
-        muted="true"
-        loop
-        class="absolute h-full w-full"
-      >
+      <video poster="assets/poster.jpg" autoplay="true" muted="true" loop class="absolute h-full w-full">
         <source :src="video" type="video/mp4" />
       </video>
     </div>
     <div class="overlay absolute w-full h-full bg-blackOverlay">
-      <div class="search-container w-3/4 absolute">
-        <h1
-          class="lg:text-desktop-hero md:text-desktop-hero-smaller text-white font-bold leading-7sm mb-0"
-        >
-          {{ title }}
-        </h1>
-        <h2
-          class="text-mobile-h3 md:text-desktop-h3 text-white leading-5sm mt-8 mb-0"
-        >
-          {{ text }}
-        </h2>
+      <div class="search-container w-3/4 absolute" >
+        <h1 class="lg:text-desktop-hero md:text-desktop-hero-smaller text-white font-bold leading-7sm mb-0">{{ title }}</h1>
+        <h2 class="text-mobile-h3 md:text-desktop-h3 text-white leading-5sm mt-8 mb-0">{{ text }}</h2>
         <app-input
           placeholder="Find your city"
           icon="search"
@@ -33,15 +19,12 @@
         ></app-input>
       </div>
     </div>
-    <transition name="fade">
-      <div v-if="isSearchPopupOpen" class="">
-        <div class="fixed w-full z-40" @click="isSearchPopupOpen = false" />
-        <search-popup
-          :is-search-popup-open.sync="isSearchPopupOpen"
-          class="z-50"
-        />
-      </div>
-    </transition>
+      <transition name="fade">
+        <div v-if="isSearchPopupOpen" class="">
+          <div class="fixed w-full z-40" @click="isSearchPopupOpen = false" />
+          <search-popup :is-search-popup-open.sync="isSearchPopupOpen" class="z-50" />
+        </div>
+      </transition>
   </div>
 </template>
 

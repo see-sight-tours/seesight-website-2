@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div >
      <hero-video
       title="Day Tours"
       text="Small Group Single Day Tours"
@@ -15,11 +15,10 @@
     <trust />
 
     <featured-experiences
-      v-if="products"
       filter-type="select"
-      :items.sync="products"
       :active-tab="1"
-      :amount="products.length"
+      :items="products"
+      initial-product-type="DAYTOUR"
     />
 
     <discover-cities />
@@ -29,12 +28,12 @@
 </template>
 
 <script>
-import { products } from "@/api/queries/product";
 import HeroVideo from "@/components/pages/HeroVideo";
 import Trust from "@/components/shared/Trust";
 import FeaturedExperiences from "@/components/pages/FeaturedExperiences";
 import DiscoverCities from "@/components/pages/DiscoverCities";
 import TripSheppard from "@/components/shared/TripSheppard";
+import { products } from "@/api/queries/product";
 export default {
   components: {
     HeroVideo,
@@ -46,8 +45,8 @@ export default {
   apollo: {
     products: {
       prefetch: true,
-      query: products
-    }
+      query: products,
+    },
   }
 };
 </script>

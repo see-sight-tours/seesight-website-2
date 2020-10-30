@@ -5,7 +5,7 @@
     </h2>
     <app-accordion :default-open="0">
       <app-accordion-item
-        v-for="(item, index) in questions"
+        v-for="(item, index) in questions.splice(0, 10)"
         :key="index"
         :index="index"
         collapse-icon="arrow-icon"

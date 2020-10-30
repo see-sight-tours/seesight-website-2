@@ -29,6 +29,7 @@
       type="select"
       :items="products"
       :amount="9"
+      initial-product-type="DAYTOUR"
     />
 
     <discover-cities />

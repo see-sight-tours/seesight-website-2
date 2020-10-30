@@ -12,6 +12,7 @@
     <div
       class="flex flex-col lg:flex-row max-w-1440 mx-auto px-16 lg:px-50 py-20"
     >
+      hi friends
       <!-- Review Dashboard -->
       <review-dashboard />
       <!-- Reviews by city -->

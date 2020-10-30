@@ -18,6 +18,7 @@
       :items.sync="products"
       :active-tab="1"
       :amount="products.length"
+      initial-product-type="MULTIDAY"
     />
 
     <discover-cities />

@@ -58,6 +58,7 @@
             :index-row="indexRow"
             :guides="filteredGuides"
             :active-index="activeIndex"
+            :url="filteredGuides[activeIndex].photos[0].desktopUrl"
             :image-u-r-l="
               `${mediaUrl}t_thumbnail/${filteredGuides[activeIndex] && filteredGuides[activeIndex].desktopUrl && filteredGuides[
                 activeIndex
@@ -178,7 +179,7 @@
       </p>
       <div class="our-tour-experience__wrap overflow-x-auto overflow-y-hidden">
         <div class="our-tour-experience__scroll inline-block mx-16 lg:mx-0">
-          <div class="tour-card-inner">
+          <div class="tour-card-inner flex flex-wrap">
             <!-- Tour card -->
             <tour-card
               v-for="tourCardItem in getMultiDayTours.slice(0, 4)"

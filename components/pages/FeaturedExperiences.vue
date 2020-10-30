@@ -2,7 +2,6 @@
   <div
     class="featured-experiences flex flex-col pb-32 md:pb-48 max-w-1220 pr-0 md:pr-30 pl-0 md:pl-30 mx-auto"
   >
-  {{productType}}
     <tags :tags.sync="tags" class="pl-16 md:pl-0" @changeTab="changeTab" />
     <div
       class="flex justify-between items-end sm:items-center flex-col sm:flex-row mb-20 md:mb-34 max-w-1120"
@@ -123,6 +122,10 @@ export default {
       type: String,
       default: () => null,
     },
+    initialProductType: {
+      type: String,
+      default: () => null
+    }
   },
   data() {
     return {
@@ -131,7 +134,7 @@ export default {
       productsAmount: 0,
       city: null,
       isShowMore: true,
-      productType: null,
+      productType: "DAYTOUR",
       tags: [
         { name: "All Things To Do", active: true, productType: "DAYTOUR", },
         {
@@ -160,7 +163,7 @@ export default {
   created() {
     this.changeTab({
       index: this.activeTab,
-      productType: 'DAYTOUR',
+      productType: this.initialProductType,
     });
   },
   methods: {

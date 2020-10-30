@@ -16,7 +16,8 @@ export const blogs = gql`
       createdAt
       updatedAt
     }
-  }`
+  }
+`
 
 
 export const blogBySlug = gql`

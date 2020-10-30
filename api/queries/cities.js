@@ -82,6 +82,7 @@ export const cityBySlug = gql`
           mobileUrl
           altText
         }
+        productType
         duration
         name
         slug
@@ -111,11 +112,12 @@ query($slug: String) {
       mobileUrl
       altText
     }
-    relatedProducts {
+    products {
       name
       snippet
       duration
       slug
+      productType
       featureImages {
         mobileUrl
         altText

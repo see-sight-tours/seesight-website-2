@@ -26,7 +26,7 @@
       >
         <cover-flow-carousel
           type="guides"
-          :slide-items="guides"
+          :slide-items="guides.map(el => ({photo: el.photos[0]}))"
           class="block sm:hidden"
           :active-index.sync="activeIndex"
         />

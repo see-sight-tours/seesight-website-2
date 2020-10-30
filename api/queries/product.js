@@ -66,7 +66,8 @@ export const productBySlug = gql`
   query($slug: String) {
     products(where: {
       slug: $slug
-    }) {
+    },
+    limit: 10) {
       productType
       duration
       name

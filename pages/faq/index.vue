@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="mt-56">
     <!-- Hero -->
     <hero
       :title="getSiteInfo && getSiteInfo.faqPageHeader"
@@ -30,7 +30,7 @@
           <h4 class="text-sm text-mobile-body md:text-desktop-h4 text-terciary mb-16 pr-16 sm:pr-0">Day Tours</h4>
           <div class="overflow-x-auto overflow-y-hidden">
             <div class="cards-scroll inline-block mr-16 lg:mx-0">
-              <div class="tour-card-inner">
+              <div class="tour-card-inner flex flex-wrap">
                 <!-- Tour card -->
                 <tour-card
                   v-for="(tourCardItem, index) in getDayTours.slice(0, 4)"
@@ -52,7 +52,7 @@
           <h4 class="text-sm text-mobile-body md:text-desktop-h4 text-terciary mb-16 pr-16 sm:pr-0">Multi Day Tours</h4>
           <div class="overflow-x-auto overflow-y-hidden">
             <div class="cards-scroll inline-block mr-16 lg:mx-0">
-              <div class="tour-card-inner">
+              <div class="tour-card-inner flex flex-wrap">
                 <!-- Tour card -->
                 <tour-card
                   v-for="(tourCardItem, index) in getMultiDayTours.slice(0, 4)"

@@ -17,37 +17,37 @@
         <div class="bars-container">
           <div class="flex items-center">
             <h4 class="text-mobile-h5 font-bold mt-5 w-1/5">5 Stars</h4>
-            <div class="bar-container h-4 w-full bg-black">
-              <div class="h-4 bg-secondary" style="width: 85%" />
+            <div class="bar-container h-4 w-full bg-black h-3">
+              <div class="h-3 bg-secondary" style="width: 85%" />
             </div>
           </div>
           <div class="flex items-center">
             <h4 class="text-mobile-h5 font-bold mt-5 w-1/5">4 Stars</h4>
-            <div class="bar-container h-4 w-full bg-black">
-              <div class="h-4 bg-secondary" style="width: 10%" />
+            <div class="bar-container h-3 w-full bg-black">
+              <div class="h-3 bg-secondary" style="width: 10%" />
             </div>
           </div>
           <div class="flex items-center">
             <h4 class="text-mobile-h5 font-bold mt-5 w-1/5">3 Stars</h4>
-            <div class="bar-container h-4 w-full bg-black">
-              <div class="h-4 bg-secondary" style="width: 2.5%" />
+            <div class="bar-container h-3 w-full bg-black">
+              <div class="h-3 bg-secondary" style="width: 2.5%" />
             </div>
           </div>
           <div class="flex items-center">
             <h4 class="text-mobile-h5 font-bold mt-5 w-1/5">2 Stars</h4>
-            <div class="bar-container h-4 w-full bg-black">
-              <div class="h-4 bg-secondary" style="width: 1%" />
+            <div class="bar-container h-3 w-full bg-black">
+              <div class="h-3 bg-secondary" style="width: 1%" />
             </div>
           </div>
           <div class="flex items-center">
             <h4 class="text-mobile-h5 font-bold mt-5 w-1/5">1 Stars</h4>
-            <div class="bar-container h-4 w-full bg-black">
-              <div class="h-4 bg-secondary" style="width: 1.5%" />
+            <div class="bar-container h-3 w-full bg-black">
+              <div class="h-3 bg-secondary" style="width: 1.5%" />
             </div>
           </div>
         </div>
       </div>
-      <div class="breakdown-container w-full mt-40 hidden lg:block">
+      <!-- <div class="breakdown-container w-full mt-40 hidden lg:block">
         <h3 class="font-bold mt-10 mb-10">Filter by Location</h3>
         <select
           class="mt-10 w-3/4 cursor-pointer"
@@ -61,7 +61,7 @@
             Ottawa
           </option>
         </select>
-      </div>
+      </div> -->
       <!-- <div class="breakdown-container w-full mt-40 hidden lg:block">
         <h3 class="font-bold mt-10 mb-10">Filter by Product</h3>
         <select

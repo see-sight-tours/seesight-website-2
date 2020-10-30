@@ -58,14 +58,14 @@
             </p>
           </nuxt-link>
         </div>
-        <!-- <cover-flow-carousel
-          :slide-items="cities.map(el => ({photo: el.featureImage})).slice(0,4)"
+        <cover-flow-carousel
+          :slide-items="cities.map(el => ({photo: el.featureImages[0]})).slice(0,4)"
           class="block sm:hidden"
           :active-index.sync="activeIndex" />
         <div class="block sm:hidden w-full mt-24 pr-16 sm:pr-0 pl-16 sm:pl-0">
           <h3 class="text-terciary mobile-h2 leading-5sm font-bold mb-16">{{ cities ? cities[activeIndex].name : '' }}</h3>
           <p class="text-terciary text-mobile-body leading-6sm">{{ cities ? cities[activeIndex].snippet : '' }}</p> 
-        </div>-->
+        </div>
       </div>
     </div>
   </div>
@@ -75,11 +75,11 @@
 import gql from "graphql-tag";
 import { mapState } from "vuex";
 import { cities, citiesPage } from "@/api/queries/cities";
-// import CoverFlowCarousel from '@/components/pages/CoverFlowCarousel'
+import CoverFlowCarousel from '@/components/pages/CoverFlowCarousel'
 import AppButton from "@/components/shared/AppButton";
 export default {
   name: "DiscoverCities",
-  components: { AppButton },
+  components: { AppButton, CoverFlowCarousel },
   apollo: {
     cities: {
       prefetch: true,

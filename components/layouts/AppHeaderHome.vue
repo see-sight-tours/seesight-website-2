@@ -3,9 +3,19 @@
     <!-- Desktop header -->
     <div class="hidden lg:flex items-center justify-between max-w-1440 mx-auto py-19 px-40 relative">
       <nuxt-link to="/">
-        <img src="@/static/img/logo-mini.svg" alt="logo" class="h-42 m-auto xl:m-unset">
+        <img
+          v-if="isSearchInputVisible"
+          src="@/static/img/logo-mini.svg"
+          alt="logo"
+          class="h-42 m-auto xl:m-unset">
+        <img
+          v-else
+          src="@/static/img/logo.svg"
+          alt="logo"
+          class="h-42 m-auto xl:m-unset">
       </nuxt-link>
       <app-input
+        v-if="isSearchInputVisible"
         placeholder="Find you city"
         icon="search"
         custom-class="py-1050 border border-grey-10"
@@ -16,14 +26,12 @@
           <li
             v-for="item in menu.menuList"
             :key="item.title"
-            class="flex mr-16">
-            <span v-if="item.icon" class="mr-8" :class="[ item.icon ]" />
-            <nuxt-link :to="item.route" :exact="item.route === '/'" @click.native="setAuthRoute(item.route)">{{ item.title }}</nuxt-link>
-          </li>
-          <li
-            class="flex mr-16"
-          >
-            <a href="/reviews">Reviews</a>
+            class="flex mr-16 list-item">
+            <span
+              v-if="item.icon"
+              class="mr-8"
+              :class="[ item.icon ]" />
+            <nuxt-link :to="item.route" active-class="is-active" :exact="item.route === '/'" @click.native="setAuthRoute(item.route)">{{ item.title }}</nuxt-link>
           </li>
           <li class="bg-grey-10 w-px h-28 mr-16" />
           <li
@@ -35,18 +43,17 @@
               class="mr-8"
               :class="[ item.icon ]" />
             <nuxt-link v-else :to="item.route" @click.native="setAuthRoute(item.route)">{{ item.title }}</nuxt-link>
-            <p v-if="item.event && !isAuth" class="cursor-pointer" @click="showModal('login')">Sign In</p>
-            <span v-if="item.event && isAuth && user" class="font-bold cursor-pointer" @click="isOpenUserMenu = !isOpenUserMenu">{{ user.firstName }} {{ user.lastName }}</span>
           </li>
         </ul>
       </nav>
+
       <ul
         v-if="isOpenUserMenu"
         class="absolute top-65 right-40 bg-white rounded-8 font-normal shadow-dropdown cursor-pointer"
         @click="isOpenUserMenu = false">
-        <li class="py-16 px-24 text-desktop-h5 leading-1sm border-b border-grey-10"><nuxt-link to="/my-account">My Account</nuxt-link></li>
+        <nuxt-link to="/my-account"><li class="py-16 px-24 text-desktop-h5 leading-1sm border-b border-grey-10">My Account</li></nuxt-link>
         <li class="py-16 px-24 text-desktop-h5 leading-1sm border-b border-grey-10" @click="showModal('currency')">{{ currentCurrency.name }}</li>
-        <li class="py-16 px-24 text-desktop-h5 leading-1sm" @click="logoutUser">Log Out</li>
+        <li class="py-16 px-24 text-desktop-h5 leading-1sm">Log Out</li>
       </ul>
     </div>
 
@@ -58,10 +65,11 @@
         <span class="icon-CLOSE text-grey-40" />
       </button>
       <nuxt-link to="/">
-        <img src="@/static/img/logo-mini.svg" alt="logo" class="h-29 m-auto xl:m-unset">
+        <img v-show="isSearchInputVisible" src="@/static/img/logo-mini.svg" alt="logo" class="h-29">
+        <img v-show="!isSearchInputVisible" src="@/static/img/logo.svg" alt="logo" class="h-29 m-auto xl:m-unset">
       </nuxt-link>
       <app-input
-        v-if="!isMenuOpen"
+        v-if="isSearchInputVisible"
         placeholder="Find you city"
         icon="search"
         custom-class="py-5 border border-grey-10"
@@ -80,81 +88,88 @@
 </template>
 
 <script>
-import { mapState, mapMutations } from "vuex";
-import AppInput from "@/components/shared/AppInput";
-import SearchPopup from "@/components/shared/SearchPopup";
+import { mapState, mapMutations } from 'vuex'
+import AppInput from '@/components/shared/AppInput'
+import SearchPopup from '@/components/shared/SearchPopup'
 export default {
-  name: "Header",
-  components: {
-    AppInput,
-    SearchPopup
-  },
+  name: 'Header',
+  components: { AppInput, SearchPopup },
   props: {
     isMenuOpen: {
       type: Boolean,
       required: false
     }
   },
-  data() {
+  data () {
     return {
       menu: {
         menuList: [
-          { title: "Tours", route: "/tours" },
-          { title: "Our Cities", route: "/cities" },
-          { title: "Our guides", route: "/guides" }
+          { title: 'Tours', route: '/tours' },
+          { title: 'Our Cities', route: '/cities' },
+          { title: 'Our guides', route: '/guides' },
+          { title: 'Reviews', route: '/reviews' }
         ],
         userMenu: [
-          { title: "My Tours", route: "/my-tours" },
-          {
-            title: "Sign In",
-            route: "/sign-in",
-            icon: "icon-USER",
-            event: true
-          }
+          { title: 'My Tours', route: '/my-tours' },
+          { title: 'Sign In', route: '/sign-in', icon: 'icon-USER', event: true }
         ]
       },
       isOpenUserMenu: false,
+      isSearchInputVisible: false,
       isSearchPopupOpen: false
-    };
+    }
   },
   computed: {
     ...mapState({
+      searchInputOffsetTop: state => state.searchInputOffsetTop,
       currentCurrency: state => state.currentCurrency,
-      // isAuth: (state) => state.auth.isAuth,
-      user: state => state.auth.user
     })
   },
   watch: {
-    isSearchPopupOpen(value) {
-      value
-        ? document.body.style.setProperty("overflow", "hidden")
-        : document.body.style.removeProperty("overflow", "hidden");
+    isSearchPopupOpen (value) {
+      value ? document.body.style.setProperty('overflow', 'hidden') : document.body.style.removeProperty('overflow', 'hidden')
     }
+  },
+  mounted () {
+    this.getPageYOffset()
+    document.addEventListener('scroll', () => this.getPageYOffset())
+  },
+  beforeDestroy () {
+    document.removeEventListener('scroll', this.getPageYOffset)
   },
   methods: {
     ...mapMutations({
-      setModalName: "setModalName",
-      setIsModalOpen: "setIsModalOpen",
-      setAuthRoute: "auth/setAuthRoute"
+      setModalName: 'setModalName',
+      setIsModalOpen: 'setIsModalOpen',
+      setAuthRoute: 'auth/setAuthRoute'
     }),
-    logoutUser() {
-      this.$apolloHelpers.onLogout();
-      location.reload();
+    getPageYOffset () {
+      if (window.pageYOffset > this.searchInputOffsetTop) {
+        this.isSearchInputVisible = true
+      } else {
+        this.isSearchInputVisible = false
+      }
     },
-    showModal(modal) {
-      this.setIsModalOpen(true);
-      this.setModalName(modal);
+    showModal (modal) {
+      this.setIsModalOpen(true)
+      this.setModalName(modal)
     }
   }
-};
+}
 </script>
 
 <style lang="scss">
 .header {
   &__menu-nav {
     .is-active {
-      font-weight: 700;
-      color: #57b8e8;
+      font-weight: 600;
+      color: #57B8E8;
+    }
+    a {
+      transition: color 0.5s;
+      &:hover {
+        color: #87c5e4;
+      }
     }
   }
 }

@@ -1,9 +1,9 @@
 <template>
   <div
     v-if="attractions"
-    class="max-w-1180 w-full mx-auto px-16 sm:px-30 mt-32 sm:mt-24"
+    class="max-w-1180 w-full mx-auto px-16 sm:px-30 mt-90 sm:mt-90"
   >
-    <h1 class="text-desktop-hero-smaller mb-40">{{ attractions[0].title }}</h1>
+    <h1 class="text-desktop-hero-smaller pt-51 mt-90 mb-40">{{ attractions[0].title }}</h1>
     <img
       class="w-full"
       :src="
@@ -13,11 +13,10 @@
     />
     <p class="mt-10">
       <vue-markdown>{{ attractions[0].longDescription }}</vue-markdown>
-    </p>
-
+    </p>  
     <div
       v-if="
-        attractions[0].relatedProducts && attractions[0].relatedProducts.length
+        attractions[0].products && attractions[0].products.length
       "
       class="bg-grey-700 flex flex-col pt-32 md:pt-48 pb-32 md:pb-48"
     >
@@ -33,7 +32,7 @@
               class="tour-card-inner flex flex-wrap justify-between lg:justify-start"
             >
               <tour-card
-                v-for="(tourCardItem, index) in attractions[0].relatedProducts"
+                v-for="(tourCardItem, index) in attractions[0].products"
                 :key="index"
                 :tour-card-item="tourCardItem"
               />
