@@ -15,7 +15,7 @@
         {{ blogs[0].title }}
       </h3>
       <p class="sm:text-desktop-body text-grey-40 text-mobile-body mb-16">
-        {{ new Date(blogs[0].updatedAt) | formatDate }}
+        {{ `${new Date(blogs[0].updatedAt)}`.split(" ").splice(1, 3).join(" ") | formatDate }}
       </p>
       <p
         class="mb-16 sm:text-desktop-body text-mobole-body text-grey-400 mb-16"
