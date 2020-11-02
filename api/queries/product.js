@@ -77,6 +77,7 @@ export const productBySlug = gql`
       bokunChannelUUID
       bokunWidgetNumber
       slug
+      shortDescription
       longDescription
       tourIncludes
       featureImages {

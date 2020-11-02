@@ -5,7 +5,7 @@
     <h3 class="font-bold text-desktop-h2 tracking-wider">Overview</h3>
     <p
       v-if="productBySlug.shortDescription"
-      class="text-desktop-h4 cursor-pointer"
+      class="text-desktop-h5 mb-20 cursor-pointer"
       @click="triggerModal"
     >
       {{ shortDescription }}

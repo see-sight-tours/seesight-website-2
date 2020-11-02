@@ -6,6 +6,8 @@ export const newsPage = gql`
     metaDescription
     title
     subTitle
+    blurb
+    blurbTitle
     headerImage {
       desktopUrl
       mobileUrl

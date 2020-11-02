@@ -3,13 +3,24 @@
     v-if="carouselItems[0]"
     class="max-w-full w-full lg:w-3/5 h-240 sm:h-392 md:h-450 my-auto relative"
   >
-    <img
-      class="w-full h-450"
-      :src="`${mediaUrl}t_thumbnail/${carouselItems[0].desktopUrl}`"
-      alt=""
-    />
-    <div class="swiper-button swiper-button-prev icon-BACK" />
-  </div>
+    <div>
+        <img
+          class="w-full h-450"
+          :src="`${mediaUrl}t_thumbnail/${carouselItems[activeIndex].desktopUrl}`"
+          alt=""
+        />
+    </div>
+    <div class="flex mt-20 justify-between" >
+      <img 
+        class="w-100 rounded cursor-pointer" 
+        v-for="(image, index) in carouselItems" 
+        :key="index" 
+        :src="`${mediaUrl}t_thumbnail/${image.desktopUrl}`" 
+        alt=""
+        @click="activeIndex = index"
+      >
+    </div>
+    </div>
 </template>
 
 <script>
@@ -24,25 +35,7 @@ export default {
   },
   data() {
     return {
-      swiperOption: {
-        loop: true,
-        loopFillGroupWithBlank: true,
-        slidesPerView: 1,
-        autoplay: {
-          delay: 4000,
-          disableOnInteraction: false
-        },
-        pagination: {
-          el: ".swiper-pagination",
-          clickable: true
-        },
-        navigation: {
-          nextEl: ".swiper-button-next",
-          prevEl: ".swiper-button-prev"
-        },
-        preloadImages: false,
-        lazy: true
-      }
+      activeIndex: 0
     };
   },
   computed: {

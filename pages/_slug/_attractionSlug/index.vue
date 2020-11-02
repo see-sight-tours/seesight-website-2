@@ -44,7 +44,7 @@
     </div>
 
     <div
-      v-if="attractions[0].products && attractions[0].products.length"
+      v-if="adasd && attractions[0].products && attractions[0].products.length"
       class="flex flex-col pt-32 md:pt-48 pb-32 md:pb-48"
     >
       <div class="max-w-1180 w-full mx-auto">
@@ -124,7 +124,7 @@ export default {
   },
   head() {
     return {
-      title: this.attractions[0] ? this.attractions[0].title : "Attraction",
+      title: this.attractions && this.attractions[0] ? this.attractions[0].title : "Attraction",
       meta: [
         // hid is used as unique identifier. Do not use `vmid` for it as it will not work
         {
@@ -135,7 +135,7 @@ export default {
             : ""
         }
       ],
-      link: this.attractions[0]
+      link: this.attractions && this.attractions[0]
         ? [
             {
               rel: "canonical",

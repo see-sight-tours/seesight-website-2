@@ -1,6 +1,6 @@
 <template>
-  <div class="py-50 px-20 w-full sm:w-3/4 mx-auto text-desktop-h4">
-    <h3 class="max-w-264 sm:max-w-full text-mobile-h1 sm:text-desktop-h1 leading-4sm sm:leading-3sm text-terciary mb-24 sm:mb-20 font-bold">{{ blurbTitle }} </h3>
+  <div class="py-50 w-full sm:w-3/4 mx-auto text-desktop-h4">
+    <h3 class="max-w-264 sm:max-w-full text-mobile-h2 sm:text-desktop-h2 leading-4sm sm:leading-3sm text-terciary mb-24 sm:mb-20 font-bold">{{ blurbTitle }} </h3>
     <p class="leading-8sm">
       {{ blurb }}
     </p>
