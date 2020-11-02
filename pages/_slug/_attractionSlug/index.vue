@@ -3,24 +3,51 @@
     v-if="attractions"
     class="max-w-1180 w-full mx-auto px-16 sm:px-30 mt-90 sm:mt-90"
   >
-    <h1 class="text-desktop-hero-smaller pt-51 mt-90 mb-40">{{ attractions[0].title }}</h1>
-    <img
-      class="w-full"
-      :src="
-        `${mediaUrl}t_thumbnail/${attractions[0].images[0].desktopUrl.trim()}`
-      "
-      alt=""
-    />
-    <p class="mt-10">
-      <vue-markdown>{{ attractions[0].longDescription }}</vue-markdown>
-    </p>  
+  <div class="flex">
+      <div class="">
+        <h3 class="text-desktop-32 mb-20 font-bold">
+          {{ attractions[0].title }}
+        </h3>
+        <p class="mt-10 w-3/4">
+          <vue-markdown>{{ attractions[0].shortDescription }}</vue-markdown>
+        </p>
+      </div>
+      <img
+          class="w-full"
+          :src="
+            `${mediaUrl}t_thumbnail/${attractions[0].images[0].desktopUrl.trim()}`
+          "
+          alt=""
+      />
+    </div>
+
+    <div class="mt-100">
+      <h3 class="font-bold mt-30 tracking-wider mb-20 text-desktop-h3">Learn More</h3>
+      <p class="w-3/4">
+        <vue-markdown>{{ attractions[0].longDescription }}</vue-markdown>
+      </p>
+      
+      <div class="mt-30" v-if="attractions[0].whatToBring">
+        <h3 class="font-bold mt-30 tracking-wider mb-20 text-desktop-h3">What to Bring</h3>
+        <p class="w-3/4">{{attractions[0].whatToBring}}</p>
+      </div>
+
+      <div v-if="attractions[0].questions && attractions[0].questions.length">
+        <h3 class="font-bold mt-30 tracking-wider mb-20 text-desktop-h3">
+          Frequently asked questions
+        </h3>
+        <div v-for="(item, index) in attractions[0].questions" :key="index" class="w-3/4">
+          <p class="font-bold mb-10">{{ item.question }}</p>
+          <p class="mb-20">{{ item.answer }}</p>
+        </div>
+      </div>
+    </div>
+
     <div
-      v-if="
-        attractions[0].products && attractions[0].products.length
-      "
-      class="bg-grey-700 flex flex-col pt-32 md:pt-48 pb-32 md:pb-48"
+      v-if="attractions[0].products && attractions[0].products.length"
+      class="flex flex-col pt-32 md:pt-48 pb-32 md:pb-48"
     >
-      <div class="max-w-1180 w-full pl-16 pr-0 md:px-30 mx-auto">
+      <div class="max-w-1180 w-full mx-auto">
         <h2
           class="text-mobile-h2 md:text-desktop-h2 leading-2sm md:leading-2sm text-terciary font-bold mb-16 md:mb-40 pr-16 md:pr-0"
         >
@@ -97,7 +124,7 @@ export default {
   },
   head() {
     return {
-      title: this.attractionBySlug ? this.attractionBySlug.title : "Attraction",
+      title: this.attractions[0] ? this.attractions[0].title : "Attraction",
       meta: [
         // hid is used as unique identifier. Do not use `vmid` for it as it will not work
         {
@@ -108,11 +135,11 @@ export default {
             : ""
         }
       ],
-      link: this.attractionBySlug
+      link: this.attractions[0]
         ? [
             {
               rel: "canonical",
-              href: `https://seesight-tours.com/${this.attractionBySlug.city.slug}/${this.attractionBySlug.slug}`
+              href: `https://seesight-tours.com/${this.attractions[0].city.slug}/${this.attractions[0].slug}`
             }
           ]
         : [{ rel: "canonical", href: "https://seesight-tours.com/cities" }]

@@ -104,6 +104,7 @@ query($slug: String) {
     metaDescription
     shortDescription
     longDescription
+    whatToBring
     city {
       slug
     }
@@ -123,6 +124,10 @@ query($slug: String) {
         altText
         desktopUrl
       }
+    }
+    questions {
+      question
+      answer
     }
   }
 }
