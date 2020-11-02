@@ -44,7 +44,7 @@ export default {
   apollo: {
     clientConfigs: {
       default: {
-        httpEndpoint: 'https://strapi.seesight-tours.com/graphql'
+        httpEndpoint: 'http://localhost:1337/graphql'
       }
     }
   },
