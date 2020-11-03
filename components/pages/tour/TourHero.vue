@@ -10,10 +10,10 @@
           alt=""
         />
     </div>
-    <div class="flex mt-20 justify-between" >
+    <div class="flex mt-20" >
       <img 
-        class="w-100 rounded cursor-pointer" 
-        v-for="(image, index) in carouselItems" 
+        class="w-100 mr-20 rounded cursor-pointer" 
+        v-for="(image, index) in [...carouselItems].splice(0,5)" 
         :key="index" 
         :src="`${mediaUrl}t_thumbnail/${image.desktopUrl}`" 
         alt=""
