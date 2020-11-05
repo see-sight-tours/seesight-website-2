@@ -105,6 +105,8 @@ query($slug: String) {
     shortDescription
     longDescription
     whatToBring
+    expertTips
+    hourOfOperation
     city {
       slug
     }

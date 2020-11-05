@@ -1,42 +1,69 @@
 <template>
   <div
     v-if="attractions"
-    class="max-w-1180 w-full mx-auto px-16 sm:px-30 mt-90 sm:mt-90"
+    class="max-w-1180 w-full mx-auto px-16 sm:px-30 mt-30"
   >
-  <div class="flex">
-      <div class="">
-        <h3 class="text-desktop-32 mb-20 font-bold">
-          {{ attractions[0].title }}
-        </h3>
-        <p class="mt-10 w-3/4">
-          <vue-markdown>{{ attractions[0].shortDescription }}</vue-markdown>
-        </p>
+  <h3 class="text-desktop-32 mb-20 font-bold">
+    {{ attractions[0].title }}
+  </h3>
+  <div class="flex h-312 lg:h-392">
+      <div class="w-225 mr-10 overflow-y-auto md:block hidden">
+        <img 
+          v-for="(image, index) in attractions[0].images"
+          :key="index"
+          :src="`${mediaUrl}t_thumbnail/${image.desktopUrl.trim()}`" 
+          :alt="image.altText"
+          class="mb-10 h-48 lg:h-74 w-full opacity-50 cursor-pointer hover:opacity-100 duration-100 "
+          :class="activeIndex === index && 'opacity-100'"
+          @click="activeIndex = index"
+        >
       </div>
       <img
-          class="w-full"
+          class="mr-10 w-1180"
           :src="
-            `${mediaUrl}t_thumbnail/${attractions[0].images[0].desktopUrl.trim()}`
+            `${mediaUrl}t_thumbnail/${attractions[0].images[activeIndex].desktopUrl.trim()}`
           "
-          alt=""
+          :alt="attractions[0].images[0].altText"
       />
+      <div class="w-650 h-full p-15 rounded shadow-200 midsm:block hidden">
+        <h4 class="font-bold">Overview</h4>
+        <p class="">
+          <vue-markdown>{{ attractions[0].shortDescription }}</vue-markdown>
+        </p>
+        <button 
+          class="bg-primary w-full py-5 rounded mt-10 font-bold text-white"
+          href="#attraction-cards"
+        >
+          View Tours with this Attraction
+        </button>
+      </div>
     </div>
 
     <div class="mt-100">
-      <h3 class="font-bold mt-30 tracking-wider mb-20 text-desktop-h3">Learn More</h3>
-      <p class="w-3/4">
+      <p>
         <vue-markdown>{{ attractions[0].longDescription }}</vue-markdown>
       </p>
       
       <div class="mt-30" v-if="attractions[0].whatToBring">
         <h3 class="font-bold mt-30 tracking-wider mb-20 text-desktop-h3">What to Bring</h3>
-        <p class="w-3/4">{{attractions[0].whatToBring}}</p>
+        <p>{{attractions[0].whatToBring}}</p>
+      </div>
+
+      <div class="mt-30" v-if="attractions[0].expertTips">
+        <h3 class="font-bold mt-30 tracking-wider mb-20 text-desktop-h3">Expert Tips</h3>
+        <p>{{attractions[0].expertTips}}</p>
+      </div>
+
+      <div class="mt-30" v-if="attractions[0].hourOfOperation">
+        <h3 class="font-bold mt-30 tracking-wider mb-20 text-desktop-h3">Hours of Operation</h3>
+        <p>{{attractions[0].hourOfOperation}}</p>
       </div>
 
       <div v-if="attractions[0].questions && attractions[0].questions.length">
         <h3 class="font-bold mt-30 tracking-wider mb-20 text-desktop-h3">
           Frequently asked questions
         </h3>
-        <div v-for="(item, index) in attractions[0].questions" :key="index" class="w-3/4">
+        <div v-for="(item, index) in attractions[0].questions" :key="index">
           <p class="font-bold mb-10">{{ item.question }}</p>
           <p class="mb-20">{{ item.answer }}</p>
         </div>
@@ -44,7 +71,7 @@
     </div>
 
     <div
-      v-if="adasd && attractions[0].products && attractions[0].products.length"
+      v-if="attractions[0].products && attractions[0].products.length"
       class="flex flex-col pt-32 md:pt-48 pb-32 md:pb-48"
     >
       <div class="max-w-1180 w-full mx-auto">
@@ -57,6 +84,7 @@
           <div class="cards-scroll inline-block mr-16 lg:mx-0">
             <div
               class="tour-card-inner flex flex-wrap justify-between lg:justify-start"
+              id="attraction-cards"
             >
               <tour-card
                 v-for="(tourCardItem, index) in attractions[0].products"
@@ -106,6 +134,7 @@ export default {
   },
   data() {
     return {
+      activeIndex: 0,
       slug: this.$route.params.attractionSlug
     };
   },
