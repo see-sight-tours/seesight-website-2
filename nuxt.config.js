@@ -25,7 +25,8 @@ export default {
   plugins: [
     { src: '@/plugins/swiper.js', mode: 'client' },
     { src: '@/plugins/scroll-picker.js', mode: 'client' },
-    { src: '@/plugins/vue-range-slider.plugin.js', mode: 'client' }
+    { src: '@/plugins/vue-range-slider.plugin.js', mode: 'client' },
+    { src: '@/plugins/social-sharing.js', mode: 'client'}
   ],
 
   // Auto import components (https://go.nuxtjs.dev/config-components)
@@ -38,7 +39,8 @@ export default {
 
   // Modules (https://go.nuxtjs.dev/config-modules)
   modules: [
-    '@nuxtjs/apollo'
+    '@nuxtjs/apollo',
+    'vue-social-sharing/nuxt'
   ],
 
   apollo: {

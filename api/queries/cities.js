@@ -2,7 +2,7 @@ import gql from 'graphql-tag'
 
 export const cities = gql`
   query {
-    cities {
+    cities(sort: "order") {
       name
       snippet
       slug
@@ -55,6 +55,7 @@ export const cityBySlug = gql`
       slug
       shortDescription
       longDescription
+      alternativeTitle
       featureImages {
         desktopUrl
         altText

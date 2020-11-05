@@ -40,6 +40,10 @@ export default {
       type: String,
       default: () => ''
     },
+    alternativeTitle: {
+      type: String,
+      default: () => ''
+    },
     text: {
       type: String,
       default: () => ''

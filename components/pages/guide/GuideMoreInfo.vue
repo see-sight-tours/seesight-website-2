@@ -17,7 +17,10 @@
       <div class="pl-0 midsm:pl-32">
         <h3 class="text-terciary text-mobile-h2 leading-2sm font-bold">{{ guides[activeIndex].firstName }}</h3>
         <p v-if="guides[activeIndex].languages.length" class="text-secondary text-mobile-h3 leading-3sm mb-10">
-          Languages: <span v-for="language in guides[activeIndex].languages" :key="language.id" class="text-grey-40">{{ language.name }}</span>
+          Languages: <span 
+            v-for="(language, index) in guides[activeIndex].languages" 
+            :key="language.id" class="text-grey-40"
+          >{{ language.name + (index === guides[activeIndex].languages.length - 1 ? "" : ", ") }}</span>
         </p>
         <div
           class="overflow-y-auto pr-24 sm:h-96 md:h-104 lg:h-180 pd-10"

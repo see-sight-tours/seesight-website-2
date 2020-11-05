@@ -11918,6 +11918,11 @@ vue-slider-component@^3.1.0:
     core-js "^3.6.5"
     vue-property-decorator "^8.0.0"
 
+vue-social-sharing@^3.0.3:
+  version "3.0.3"
+  resolved "https://registry.yarnpkg.com/vue-social-sharing/-/vue-social-sharing-3.0.3.tgz#06fe22d4f1de70e4515c5447b92de07b0a0e41b0"
+  integrity sha512-7MbbVhhzMYM+mPGJjKc+L2EYudCDqavKP2nJTZeV/KQfJqbKsnK6e0nzSd/8Ir4JSQ+AQoY9D9yP0t4gXV0FgA==
+
 vue-stripe-elements-plus@^0.3.2:
   version "0.3.2"
   resolved "https://registry.yarnpkg.com/vue-stripe-elements-plus/-/vue-stripe-elements-plus-0.3.2.tgz#9b3835e1c61048a1405798ded66abe09f9d38084"

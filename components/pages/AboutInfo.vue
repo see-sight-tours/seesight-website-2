@@ -25,7 +25,9 @@
           >
             <vue-markdown
               >{{ shortDescription }}
-              {{ longDescription }}
+            </vue-markdown>
+            <vue-markdown
+              >{{ longDescription }}
             </vue-markdown>
           </p>
           <div class="mt-8">
@@ -70,7 +72,7 @@ export default {
   },
   data() {
     return {
-      isOpened: false,
+      isOpened: true,
     };
   },
 };

@@ -10,7 +10,7 @@
           alt=""
         />
     </div>
-    <div class="flex mt-20" >
+    <div class="mt-20 hidden lg:flex" >
       <img 
         class="w-100 mr-20 rounded cursor-pointer" 
         v-for="(image, index) in [...carouselItems].splice(0,5)" 

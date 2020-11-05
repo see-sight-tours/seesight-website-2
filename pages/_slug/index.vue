@@ -2,6 +2,7 @@
   <div v-if="cities">
     <hero
       :title="`Best ${cities[0] && cities[0].name} Tours`"
+      :alternativeTitle="cities[0].alternativeTitle"
       :search="true"
       :image="cities[0] && cities[0].featureImages[0]"
       custom-class-wrap="pt-16 md:pt-144 pb-24 md:pb-224"
@@ -23,7 +24,7 @@
         <h2
           class="text-mobile-h2 md:text-desktop-h2 leading-2sm md:leading-2sm text-terciary font-bold mb-16 md:mb-40 pr-16 md:pr-0"
         >
-          Tours in this city
+          Featured Experiences"
         </h2>
         <div class="overflow-x-auto overflow-y-hidden">
           <div class="cards-scroll inline-block mr-16 lg:mx-0">

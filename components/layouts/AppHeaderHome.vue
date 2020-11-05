@@ -16,7 +16,7 @@
       </nuxt-link>
       <app-input
         v-if="isSearchInputVisible"
-        placeholder="Find you city"
+        placeholder="Find your city"
         icon="search"
         custom-class="py-1050 border border-grey-10"
         class="flex-1 mx-24 max-w-600"
@@ -70,7 +70,7 @@
       </nuxt-link>
       <app-input
         v-if="isSearchInputVisible"
-        placeholder="Find you city"
+        placeholder="Find your city"
         icon="search"
         custom-class="py-5 border border-grey-10"
         class="flex-1 ml-8 mr-24"
