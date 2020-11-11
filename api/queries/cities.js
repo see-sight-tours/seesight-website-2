@@ -18,6 +18,7 @@ export const cities = gql`
         title
         metaDescription
         shortDescription
+        name
         city {
           slug
         }
@@ -69,6 +70,7 @@ export const cityBySlug = gql`
         title
         metaDescription
         shortDescription
+        name
         city {
           slug
         }

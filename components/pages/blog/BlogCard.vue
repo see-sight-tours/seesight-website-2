@@ -11,15 +11,14 @@
       >
         {{ "" }}
       </p>
+      <p class="md:text-desktop-body text-grey-40 mb-5">
+        {{ `${new Date(article.updatedAt)}`.split(" ").splice(1, 3).join(" ") | formatDate }}
+      </p>
       <h3
         class="text-terciary text-mobile-h2 font-bold mb-5 md:text-desktop-h2"
       >
         {{ article.title }}
       </h3>
-      <p class="md:text-desktop-body text-grey-40 mb-5">
-        
-        {{ `${new Date(article.updatedAt)}`.split(" ").splice(1, 3).join(" ") | formatDate }}
-      </p>
       <p class="mb-16 md:text-desktop-body text-grey-400">
         {{ article.snippet }}
       </p>
