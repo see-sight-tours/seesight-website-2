@@ -8,7 +8,6 @@
       custom-class-wrap="pt-24 md:pt-104 pb-24 md:pb-48"
       custom-class-location="mt-24 md:mt-80"
     />
-
     <div
       v-if="blogs"
       class="flex flex-col pb-24 md:pb-48 max-w-1180 mx-auto px-16 sm:px-30"
@@ -27,7 +26,7 @@
         <blog-main-card :blogs="orderedBlogs" :image-url="imageUrl" />
         <div class="blog__card-wrap flex flex-wrap" ref="cardsContainer">
           <div
-            v-for="(article, index) in orderedBlogs.slice(
+            v-for="(article, index) in blogsByTag.slice(
               0,
               this.numberOfCards
             )"
@@ -68,7 +67,7 @@ import Tags from "@/components/shared/Tags";
 import AppButton from "@/components/shared/AppButton";
 import BlogCard from "@/components/pages/blog/BlogCard";
 import BlogMainCard from "@/components/pages/blog/BlogMainCard";
-import { blogs, blogPage } from "@/api/queries/blogs";
+import { blogs, blogPage, categories } from "@/api/queries/blogs";
 export default {
   name: "BlogPage",
   components: {
@@ -87,12 +86,17 @@ export default {
     blogPage: {
       prefetch: true,
       query: blogPage
+    },
+    categories: {
+      prefetch: true,
+      query: categories
     }
   },
   data() {
     return {
       isOpenMoreInfo: false,
       numberOfCards: 6,
+      categoryIndex: 0
     };
   },
   computed: {
@@ -115,25 +119,36 @@ export default {
       }
       return false;
     },
+    blogsByTag(){
+      let category = this.categories[this.categoryIndex].title
+      return this.blogs.filter(blog => {
+        let outcome = false
+        blog.categories.map((blogCategory) => {
+          if(blogCategory.title === category) outcome = true
+        })
+        return outcome
+      })
+    }
   },
   methods: {
     // Will be finished when we get API
     changeTab({ index }) {
-      for (const item of this.categories) {
-        item.active = false;
-      }
-      this.categories[index].active = true;
-      const variables = this.categories[index].id
-        ? { categoryID: this.categories[index].id }
-        : null;
-      this.$apollo
-        .query({ query: blogs, variables })
-        .then(({ data }) => {
-          this.blogs = data.blogs;
-        })
-        .catch((e) => {
-          throw new Error(e);
-        });
+      this.categoryIndex = index
+      // for (const item of this.categories) {
+      //   item.active = false;
+      // }
+      // this.categories[index].active = true;
+      // const variables = this.categories[index].id
+      //   ? { categoryID: this.categories[index].id }
+      //   : null;
+      // this.$apollo
+      //   .query({ query: blogs, variables })
+      //   .then(({ data }) => {
+      //     this.blogs = data.blogs;
+      //   })
+      //   .catch((e) => {
+      //     throw new Error(e);
+      //   });
     },
     changeNumberOfCards() {
       const cardsContainer = this.$refs.cardsContainer;
@@ -152,7 +167,7 @@ export default {
         block: "center",
         inline: "nearest",
       });
-    },
+    }
   },
   head() {
     return {

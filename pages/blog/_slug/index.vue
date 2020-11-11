@@ -19,7 +19,7 @@
           >
             <!-- Tour card -->
             <tour-card
-              v-for="(tourCardItem, index) in products.slice(0, 4)"
+              v-for="(tourCardItem, index) in blogs[0].relatedTours"
               :key="index"
               :tour-card-item="tourCardItem"
             />

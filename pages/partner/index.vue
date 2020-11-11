@@ -1,8 +1,8 @@
 <template>
   <div>
     <hero
-      :title="partnersPage && partnersPage.title"
-      :text="partnersPage && partnersPage.title"
+      :title="partnersPage && partnersPage.header"
+      :text="partnersPage && partnersPage.headerSubtext"
       :image="partnersPage && partnersPage.headerImage"
       custom-class-wrap="pt-24 md:pt-56 pb-80 md:pb-144"
       custom-class-location="mt-32 md:mt-48"
@@ -102,7 +102,12 @@
         </h2>
       </div>
       <div>
-        <featured-experiences :items.sync="products" :amount="4" />
+        <featured-experiences 
+          :items.sync="products" 
+          type="select"
+          :amount="9" 
+          initial-product-type="DAYTOUR"
+        />
       </div>
     </div>
 

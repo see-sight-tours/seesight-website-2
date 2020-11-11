@@ -11,7 +11,7 @@
             $emit('changeTab', { index, productType: item.productType })
           "
         >
-          {{ item.name }}
+          <p class="capitalize" >{{ item.title }}</p>
         </app-button>
       </div>
     </div>

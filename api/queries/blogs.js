@@ -29,6 +29,9 @@ export const blogs = gql`
       subTitle
       createdAt
       updatedAt
+      categories {
+        title
+      }
     }
   }
 `
@@ -62,10 +65,32 @@ export const blogBySlug = gql`
           mobileUrl
           altText
         }
-    }
+      }
+      relatedTours {
+        title
+        slug
+        snippet
+        name
+        bokunStyleID
+        bokunChannelUUID
+        bokunWidgetNumber
+        featureImages {
+          desktopUrl
+          mobileUrl
+          altText
+        }
+      }
       author
       content
       subTitle
       updatedAt
     }
   }`
+
+  export const categories = gql`
+  {
+    categories {
+      title
+    }
+  }
+  `
