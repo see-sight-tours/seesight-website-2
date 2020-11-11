@@ -1,9 +1,9 @@
 <template>
   <div>
     <hero
-      :title="aboutPage && aboutPage.aboutUsBarHeader"
-      :text="aboutPage && aboutPage.aboutUsBarImageSubtitle"
-      :image="aboutPage && aboutPage.aboutUsBarImage"
+      :title="aboutPage && aboutPage.header"
+      :text="aboutPage && aboutPage.imageSubtitle"
+      :image="aboutPage && aboutPage.imageHeader"
       custom-class-wrap="pt-48 md:pt-104 pb-64 md:pb-144"
     />
 

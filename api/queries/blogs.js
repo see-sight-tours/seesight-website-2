@@ -1,5 +1,19 @@
 import gql from 'graphql-tag'
 
+export const blogPage = gql`
+  {
+    blogPage {
+      headerTitle
+      subHeader
+      headerImage {
+        desktopUrl
+        altText
+        mobileUrl
+      }
+    }
+  }
+`
+
 export const blogs = gql`
   {
     blogs {

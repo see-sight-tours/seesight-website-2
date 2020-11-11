@@ -8,24 +8,27 @@
         custom-class-wrap="pt-24 md:pt-104 pb-24 md:pb-48"
         custom-class-location="mt-32 md:mt-80"
       />
-
       <div
         v-if="cities.length"
         class="max-w-1180 w-full mx-auto px-16 sm:px-30 mt-32 sm:mt-24">
         <h2 class="text-secondary text-mobile-h3 sm:text-desktop-h3 leading-3sm sm:leading-5sm mb-20 sm:mb-24">Featured cities</h2>
         <div class="cities cities-featured">
           <div
-            v-for="(city, index) in cities"
-            :key="index"
-            class="hidden sm:block mb-30 last:mb-0 md:mb-0">
-            <nuxt-link :to="`/${ city.slug }`">
-              <img
-                :src="`${mediaUrl}t_thumbnail/${city.featureImages[0] && city.featureImages[0].desktopUrl.trim()}` || require(`@/static/img/no-image.png`)"
-                :alt="city.featureImages[0].altText || 'cities'"
-                class="h-176 w-full object-cover rounded-8">
-              <h3 class="text-terciary text-mobile-h2 md:text-desktop-h2 leading-2sm md:leading-2sm font-bold mt-16 mb-0">{{ city.name }}</h3>
-              <p class="text-terciary text-mobile-body md:text-desktop-h4 leading-1sm md:leading-4sm mt-16">{{ city.snippet }}</p>
-            </nuxt-link>
+              v-for="(city, index) in featuredCities"
+              :key="index"
+          >
+            <div
+              class="hidden sm:block mb-30 last:mb-0 md:mb-0"
+            >
+              <nuxt-link :to="`/${ city.slug }`">
+                <img
+                  :src="`${mediaUrl}t_thumbnail/${city.featureImages[0] && city.featureImages[0].desktopUrl.trim()}` || require(`@/static/img/no-image.png`)"
+                  :alt="city.featureImages[0].altText || 'cities'"
+                  class="h-176 w-full object-cover rounded-8">
+                <h3 class="text-terciary text-mobile-h2 md:text-desktop-h2 leading-2sm md:leading-2sm font-bold mt-16 mb-0">{{ city.name }}</h3>
+                <p class="text-terciary text-mobile-body md:text-desktop-h4 leading-1sm md:leading-4sm mt-16">{{ city.snippet }}</p>
+              </nuxt-link>
+            </div>
           </div>
 
         <cover-flow-carousel
@@ -76,7 +79,7 @@
 </template>
 
 <script>
-import { cities, citiesPage } from '@/api/queries/cities'
+import { cities, citiesPage, citiesByFeatured} from '@/api/queries/cities'
 import SubscribeNewsletter from '@/components/pages/SubscribeNewsletter'
 import { mapState, mapMutations } from 'vuex'
 import Hero from '@/components/pages/Hero'

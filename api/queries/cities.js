@@ -6,6 +6,7 @@ export const cities = gql`
       name
       snippet
       slug
+      featured
       featureImages {
         desktopUrl
         altText
@@ -102,6 +103,7 @@ query($slug: String) {
     slug
     snippet
     title
+    name
     metaDescription
     shortDescription
     longDescription
@@ -135,3 +137,8 @@ query($slug: String) {
   }
 }
 `
+
+
+// (where: {
+//   featured: true
+// })

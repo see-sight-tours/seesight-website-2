@@ -42,13 +42,13 @@
 
         <!-- Itinerary -->
         <tour-itinerary
-          v-if="products[0] && products[0].itineraries && products[0].itineraries.length"
+          v-if="products[0] && products[0].itineraries && products[0].itineraries.length && products[0].productType === 'MULTIDAY'"
           :itinerary="products[0].itineraries"
         />
 
         <!-- Tour Description -->
         <tour-description
-          v-if="products[0]"
+          v-if="products[0] && products[0].productType !== 'MULTIDAY'"
           :long-description="products[0].longDescription"
           :tour-includes="products[0].tourIncludes"
           :important-info="products[0].importantInfo"

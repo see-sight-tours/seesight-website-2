@@ -71,6 +71,8 @@
         <reviews-filter v-if="modalName === 'reviewsFilter'" />
         <!-- Reviews COVID message modal -->
         <covid-message v-if="modalName === 'covidMessage'" />
+
+        <tour-short-message v-if="modalName === 'tourShortMessage'" ></tour-short-message>
       </div>
     </div>
   </transition>
@@ -78,6 +80,7 @@
 
 <script>
 import { mapState, mapMutations } from "vuex";
+import TourShortMessage from "@/components/modals/TourShortMessage"
 // import ReviewsFilter from "@/components/modals/ReviewsFilter";
 // import MultiDaysFilter from "@/components/modals/MultiDaysFilter";
 // import SelectCurrency from "@/components/modals/SelectCurrency";

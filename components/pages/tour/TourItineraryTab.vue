@@ -4,7 +4,7 @@
       class="itinerary-tab-container py-15 cursor-pointer flex"
       @click="isOpen = !isOpen"
     >
-      <h5 class="font-bold mr-15">Step {{ index + 1 }}:</h5>
+      <h5 class="font-bold mr-15">Day {{ index + 1 }}:</h5>
       <h5 class="font-bold">{{ item.title }}</h5>
       <img class="w-16 ml-auto" :src="isOpen ? arrowRight : arrowDown" alt="" />
     </div>

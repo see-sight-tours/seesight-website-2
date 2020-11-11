@@ -2,10 +2,9 @@
   <div class="blog">
     <!-- Hero -->
     <hero
-      :title="getSiteInfo && getSiteInfo.blogHeaderTitle"
-      :text="getSiteInfo && getSiteInfo.blogSubHeader"
-      :image="getSiteInfo && getSiteInfo.blogHeaderImage"
-      location="Mount Royal, Montreal"
+      :title="blogPage && blogPage.headerTitle"
+      :text="blogPage && blogPage.subHeader"
+      :image="blogPage && blogPage.headerImage"
       custom-class-wrap="pt-24 md:pt-104 pb-24 md:pb-48"
       custom-class-location="mt-24 md:mt-80"
     />
@@ -69,7 +68,7 @@ import Tags from "@/components/shared/Tags";
 import AppButton from "@/components/shared/AppButton";
 import BlogCard from "@/components/pages/blog/BlogCard";
 import BlogMainCard from "@/components/pages/blog/BlogMainCard";
-import { blogs } from "@/api/queries/blogs";
+import { blogs, blogPage } from "@/api/queries/blogs";
 export default {
   name: "BlogPage",
   components: {
@@ -85,6 +84,10 @@ export default {
       prefetch: true,
       query: blogs,
     },
+    blogPage: {
+      prefetch: true,
+      query: blogPage
+    }
   },
   data() {
     return {

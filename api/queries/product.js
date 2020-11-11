@@ -131,7 +131,7 @@ export const productBySlug = gql`
         date
       }
       highlights
-      itineraries {
+      itineraries(sort: "step") {
         title
         snippet
         images {

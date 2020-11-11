@@ -4,7 +4,7 @@
     class="max-w-1180 w-full mx-auto px-16 sm:px-30 mt-30"
   >
   <h3 class="text-desktop-32 mb-20 font-bold">
-    {{ attractions[0].title }}
+    {{ attractions[0].name }}
   </h3>
   <div class="flex h-312 lg:h-392">
       <div class="w-225 mr-10 overflow-y-auto md:block hidden">
@@ -32,7 +32,7 @@
         </p>
         <button 
           class="bg-primary w-full py-5 rounded mt-10 font-bold text-white"
-          href="#attraction-cards"
+          @click="scrollToTours"
         >
           View Tours with this Attraction
         </button>
@@ -76,6 +76,7 @@
     >
       <div class="max-w-1180 w-full mx-auto">
         <h2
+          ref="pageAttractionHeader"
           class="text-mobile-h2 md:text-desktop-h2 leading-2sm md:leading-2sm text-terciary font-bold mb-16 md:mb-40 pr-16 md:pr-0"
         >
           Tours that include this attraction
@@ -145,6 +146,18 @@ export default {
         return `${this.mediaUrl}t_mobile/`;
       } else {
         return `${this.mediaUrl}t_desktop/`;
+      }
+    }
+  },
+  methods: {
+    scrollToTours(){
+      const pageAttractionHeader = this.$refs.pageAttractionHeader;
+      if(pageAttractionHeader) {
+        pageAttractionHeader.scrollIntoView({
+          behavior: "smooth",
+          block: "center",
+          inline: "nearest",
+        });
       }
     }
   },

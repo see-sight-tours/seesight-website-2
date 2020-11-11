@@ -95,7 +95,7 @@ export default {
     }),
     triggerModal() {
       this.setIsModalOpen(true);
-      this.setModalName("trustMessage");
+      this.setModalName("tourShortMessage");
       this.setModalText(this.productBySlug.shortDescription);
     },
   },
