@@ -12,7 +12,6 @@
     <div
       class="flex flex-col lg:flex-row max-w-1440 mx-auto px-16 lg:px-50 py-20"
     >
-      hi friends
       <!-- Review Dashboard -->
       <review-dashboard />
       <!-- Reviews by city -->
@@ -36,7 +35,7 @@ export default {
   components: { Hero, ReviewDashboard, ReviewByCity },
   data() {
     return {
-      page: 1,
+      page: 1
     };
   },
   async asyncData({ store }) {
@@ -45,7 +44,7 @@ export default {
         .get(
           `https://magpie.travel/api/reviews?api_key=77c66a64-625f-41ad-9107-f6fb3f0021ee&page=${store.page}`
         )
-        .then((res) => ({ reviews: res.data.reviews }));
+        .then(res => ({ reviews: res.data.reviews }));
       return reviews;
     } catch (error) {
       console.log(error);
@@ -56,11 +55,11 @@ export default {
       title: "Reviews",
       meta: [
         // hid is used as unique identifier. Do not use `vmid` for it as it will not work
-        { hid: "description", name: "description", content: "" },
+        { hid: "description", name: "description", content: "" }
       ],
-      link: [{ rel: "canonical", href: "https://seesight-tours.com/reviews" }],
+      link: [{ rel: "canonical", href: "https://seesight-tours.com/reviews" }]
     };
-  },
+  }
 };
 </script>
 
